@@ -82,8 +82,15 @@
     </div>
 
     <div class="container mt-5">
-        <h3 class="mb-4">Daftar Sepatu</h3>
-        <div class="row justify-content-center" id="container-barang">
+        <div class="d-flex justify-content-between mb-3">
+            <h3 class="mb-4">Daftar Sepatu</h3>
+            <a href="{{ route('products') }}" class="text-decoration-none text-dark">
+                Lihat semua produk >>>
+            </a>
+        </div>
+
+        <div class="row">
+
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="{{ asset('assets/NIKE_P_6000.jpg') }}" class="card-img-top" alt="Sepatu" />
@@ -92,12 +99,13 @@
                         <p class="card-text harga-text">Harga: Rp 1.429.000</p>
                         <p class="card-text stok-text">Stok: 10</p>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-detail w-50 me-2">Beli</button>
-                            <button class="btn btn-outline-danger btn-wishlist w-50"> Wishlist</button>
+                            <button class="btn btn-primary w-50 me-2">Beli</button>
+                            <button class="btn btn-outline-danger w-50">Wishlist</button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="{{ asset('assets/AIR_FORCE_1.jpg') }}" class="card-img-top" alt="Sepatu" />
@@ -106,12 +114,13 @@
                         <p class="card-text harga-text">Harga: Rp 1.529.000</p>
                         <p class="card-text stok-text">Stok: 7</p>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-detail w-50 me-2">Beli</button>
-                            <button class="btn btn-outline-danger btn-wishlist w-50"> Wishlist</button>
+                            <button class="btn btn-primary w-50 me-2">Beli</button>
+                            <button class="btn btn-outline-danger w-50">Wishlist</button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="{{ asset('assets/AIR_JORDAN_1_LOW.JPG') }}" class="card-img-top" alt="Sepatu" />
@@ -120,73 +129,76 @@
                         <p class="card-text harga-text">Harga: Rp 1.729.000</p>
                         <p class="card-text stok-text">Stok: 10</p>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-detail w-50 me-2">Beli</button>
-                            <button class="btn btn-outline-danger btn-wishlist w-50"> Wishlist</button>
+                            <button class="btn btn-primary w-50 me-2">Beli</button>
+                            <button class="btn btn-outline-danger w-50">Wishlist</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+    </div>
 
-        <div class="modal fade" id="wishlistModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    <div class="modal fade" id="wishlistModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h5 class="modal-title">Daftar Wishlist Saya</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <ul class="list-group" id="daftar-wishlist"></ul>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-danger" onclick="hapusWishlist()">Kosongkan</button>
-                    </div>
-
+                <div class="modal-header">
+                    <h5 class="modal-title">Daftar Wishlist Saya</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
+                <div class="modal-body">
+                    <ul class="list-group" id="daftar-wishlist"></ul>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-danger" onclick="hapusWishlist()">Kosongkan</button>
+                </div>
+
             </div>
         </div>
+    </div>
 
-        <div class="container mt-5 mb-5">
-            <h3 class="mb-4">Tambah Sepatu</h3>
+    <div class="container mt-5 mb-5">
+        <h3 class="mb-4">Tambah Sepatu</h3>
 
-            <div class="card p-4">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Nama Sepatu</label>
-                        <input type="text" class="form-control" placeholder="Masukkan nama sepatu" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Harga</label>
-                        <input type="number" class="form-control" placeholder="Masukkan harga" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Stok</label>
-                        <input type="number" class="form-control" placeholder="Masukkan stok" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Kategori</label>
-                        <select class="form-select">
-                            <option>Running</option>
-                            <option>Basket</option>
-                            <option>Casual</option>
-                        </select>
-                    </div>
+        <div class="card p-4">
+            <form method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label class="form-label">Nama Sepatu</label>
+                    <input type="text" class="form-control" name="nama" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Harga</label>
+                    <input type="number" class="form-control" name="harga" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Stok</label>
+                    <input type="number" class="form-control" name="stok" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Kategori</label>
+                    <select class="form-select" name="kategori">
+                        <option>Running</option>
+                        <option>Basket</option>
+                        <option>Casual</option>
+                    </select>
+                </div>
 
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
         </div>
+    </div>
 
-        <footer class="bg-dark text-white text-center py-3 mt-5">
-            <p>&copy; Sistem Manajemen Sepatu</p>
-        </footer>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; Sistem Manajemen Sepatu</p>
+    </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="{{ asset('js/script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 
 </body>
 
